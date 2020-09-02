@@ -2,11 +2,10 @@
 @import "styles/mixin.scss";
 
 .page {
-  @include dark(primary);
   @include flex();
 
   padding: 16px 0;
   > div {
-    padding: 0 48px;
+    margin: 0 6vw;
   }
 }

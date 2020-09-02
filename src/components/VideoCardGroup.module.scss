@@ -1,13 +1,8 @@
 @import "styles/mixin.scss";
 
+$itemPerRow: 4;
+
 .group {
-  @include flex();
-  align-items: stretch;
-
-  > * {
-    height: 100%;
-    width: calc(100vw / 6);
-
-    margin-right: 16px;
-  }
+  display: grid;
+  grid-template-columns: repeat($itemPerRow, 1fr);
 }
