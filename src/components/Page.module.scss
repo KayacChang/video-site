@@ -1,0 +1,9 @@
+@import "styles/theme.scss";
+@import "styles/mixin.scss";
+
+.page {
+  @include dark(primary);
+  @include flex();
+
+  padding: 16px;
+}
