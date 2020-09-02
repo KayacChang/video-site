@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Nav.module.scss";
+import styles from "./NavBar.module.scss";
 import LOGO_IMG from "assets/netflix-logo.png";
 
 function Logo() {
