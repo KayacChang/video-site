@@ -5,9 +5,8 @@ import VideoCard from "../components/VideoCard";
 import { Item } from "../api/types";
 import VideoCardGroup from "../components/VideoCardGroup";
 
-type SectionTitle = "mostPopular";
 type Props = {
-  title: SectionTitle;
+  title: string;
 };
 
 function Section({ title }: Props) {
@@ -15,7 +14,13 @@ function Section({ title }: Props) {
 
   useEffect(() => {
     async function run() {
-      const data = await getVideo();
+      const data = await getVideo({
+        part: ["snippet", "contentDetails", "statistics"],
+        chart: "mostPopular",
+        maxResults: 12,
+      });
+
+      console.log(data);
 
       setVideos((list) => [...list, ...data.items]);
     }
@@ -38,7 +43,7 @@ function Section({ title }: Props) {
 export default function Browse() {
   return (
     <Page>
-      <Section title={"mostPopular"} />
+      <Section title={"Most Popular"} />
     </Page>
   );
 }
