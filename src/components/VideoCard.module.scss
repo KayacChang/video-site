@@ -1,10 +1,7 @@
 @import "styles/mixin.scss";
 
 .card {
-  @include flex(flex-start, flex-start);
-  flex-direction: column;
+  width: min-content;
 
-  > img {
-    margin: auto;
-  }
+  margin: 0 auto;
 }

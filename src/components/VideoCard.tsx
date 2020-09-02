@@ -12,8 +12,10 @@ export default function VideoCard({ data }: Props) {
 
   return (
     <div className={styles.card}>
-      <img src={img} alt={img} />
-      <h5>{title}</h5>
+      <a href="/">
+        <img src={img} alt={img} />
+        <h5>{title}</h5>
+      </a>
     </div>
   );
 }
