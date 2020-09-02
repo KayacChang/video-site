@@ -1,0 +1,13 @@
+@import "styles/mixin.scss";
+
+.group {
+  @include flex();
+  align-items: stretch;
+
+  > * {
+    height: 100%;
+    width: calc(100vw / 6);
+
+    margin-right: 16px;
+  }
+}

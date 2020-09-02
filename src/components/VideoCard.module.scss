@@ -1,3 +1,10 @@
+@import "styles/mixin.scss";
+
 .card {
-  background: black;
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+
+  > img {
+    margin: auto;
+  }
 }

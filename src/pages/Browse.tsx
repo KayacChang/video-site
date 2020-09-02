@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Page from "../components/Page";
-
 import { getVideo } from "../api/video";
 import VideoCard from "../components/VideoCard";
 import { Item } from "../api/types";
+import VideoCardGroup from "../components/VideoCardGroup";
 
-function Section() {
+type SectionTitle = "mostPopular";
+type Props = {
+  title: SectionTitle;
+};
+
+function Section({ title }: Props) {
   const [videos, setVideos] = useState([] as Item[]);
 
   useEffect(() => {
@@ -20,10 +25,12 @@ function Section() {
 
   return (
     <section>
-      <h3>Recommend To You</h3>
-      {videos.map((video) => (
-        <VideoCard key={video.id} data={video} />
-      ))}
+      <h3>{title}</h3>
+      <VideoCardGroup>
+        {videos.map((video) => (
+          <VideoCard key={video.id} data={video} />
+        ))}
+      </VideoCardGroup>
     </section>
   );
 }
@@ -31,7 +38,7 @@ function Section() {
 export default function Browse() {
   return (
     <Page>
-      <Section />
+      <Section title={"mostPopular"} />
     </Page>
   );
 }

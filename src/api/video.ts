@@ -17,7 +17,7 @@ export function getVideo(): Promise<Video> {
 
   const { href } = getHost()
     .map(append("part", "snippet"))
-    .map(append("id", "7KTt4_M09Rw"))
+    .map(append("chart", "mostPopular"))
     .map(append("key", process.env.REACT_APP_API_KEY || "")).value;
 
   return fetch(href).then((resp) => resp.json());
