@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Header.module.scss";
+import styles from "./Nav.module.scss";
 import LOGO_IMG from "assets/netflix-logo.png";
 
 function Logo() {
@@ -10,7 +10,7 @@ function Logo() {
   );
 }
 
-export default function Nav() {
+export default function NavBar() {
   return (
     <header className={styles.header}>
       <Logo />
