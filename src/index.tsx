@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
 import "./styles/common.scss";
+import "./assets/NetflixSans_W_Rg.woff2";
 
 ReactDOM.render(
   <React.StrictMode>

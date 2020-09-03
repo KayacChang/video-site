@@ -6,8 +6,6 @@
   @include flex();
 
   min-height: 6vh;
-  font-size: calc(10px + 2vmin);
-
   padding: 0 16px;
 }
 
@@ -18,5 +16,12 @@
   img {
     max-width: 100%;
     max-height: 100%;
+  }
+}
+
+.links {
+  display: flex;
+  > * {
+    margin: 0 8px;
   }
 }
