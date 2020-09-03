@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./VideoCard.module.scss";
-import { Item } from "../api/types";
+import { Item } from "../models/video";
 import Subscript from "./Subscript";
-import { useSubscriptDispatch } from "../storages/subscript";
+import { useSubscriptState } from "../storages/subscript";
 import { parseDuration } from "../functions";
 import Duration from "./Duration";
 
@@ -15,21 +15,16 @@ export default function VideoCard({ data }: Props) {
   const description = data.snippet.description;
   const time = parseDuration(data.contentDetails.duration);
 
-  const dispatch = useSubscriptDispatch();
+  const subscript = useSubscriptState();
 
   return (
     <div className={styles.card}>
       <div style={{ position: "relative" }}>
         <Subscript
+          videoID={data.id}
+          active={subscript.includes(data.id)}
           style={{
             position: "absolute",
-          }}
-          onChange={(state) => {
-            dispatch(
-              state
-                ? { type: "add", videoID: data.id }
-                : { type: "remove", videoID: data.id }
-            );
           }}
         />
         <Duration

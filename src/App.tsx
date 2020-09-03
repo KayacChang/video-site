@@ -1,5 +1,6 @@
 import React from "react";
-import { SubscriptProvider, useSubscriptState } from "./storages/subscript";
+import { SubscriptProvider } from "./storages/subscript";
+import { VideoProvider } from "./storages/video";
 import {
   BrowserRouter as Router,
   useLocation,
@@ -8,12 +9,10 @@ import {
 } from "react-router-dom";
 import Nav from "./components/Nav";
 import NavBar from "./components/NavBar";
-
 import Browse from "./pages/Browse";
 import MyList from "./pages/MyList";
 
 function Routes() {
-  const subscript = useSubscriptState();
   const { pathname } = useLocation();
 
   const routes = [
@@ -45,11 +44,13 @@ function Routes() {
 
 function App() {
   return (
-    <SubscriptProvider init={[]}>
-      <Router>
-        <Routes />
-      </Router>
-    </SubscriptProvider>
+    <VideoProvider init={{}}>
+      <SubscriptProvider init={[]}>
+        <Router>
+          <Routes />
+        </Router>
+      </SubscriptProvider>
+    </VideoProvider>
   );
 }
 

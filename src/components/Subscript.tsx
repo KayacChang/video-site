@@ -1,26 +1,22 @@
-import React, { CSSProperties, MouseEvent, useState, useCallback } from "react";
+import React, { CSSProperties, MouseEvent, useCallback } from "react";
 import styles from "./Subscript.module.scss";
+import { useSubscriptDispatch } from "../storages/subscript";
 
 type Props = {
   active?: boolean;
   style?: CSSProperties;
-  onChange?: (state: boolean) => void;
+  videoID: string;
 };
-export default function Subscript({
-  active: _active = false,
-  style,
-  onChange = () => {},
-}: Props) {
-  const [active, setActive] = useState(_active);
+export default function Subscript({ active = false, style, videoID }: Props) {
+  const dispatch = useSubscriptDispatch();
 
   const handle = useCallback(
     (event: MouseEvent) => {
       event.stopPropagation();
 
-      setActive((active) => !active);
-      onChange(!active);
+      dispatch(active ? { type: "remove", videoID } : { type: "add", videoID });
     },
-    [active, onChange]
+    [active, videoID, dispatch]
   );
 
   return (

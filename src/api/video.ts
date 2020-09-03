@@ -1,6 +1,6 @@
 import { curry } from "ramda";
 import { Functor } from "../functions";
-import { Video } from "./types";
+import { Video } from "../models/video";
 
 function getHost() {
   return Functor(new URL("https://www.googleapis.com/youtube/v3/videos"));

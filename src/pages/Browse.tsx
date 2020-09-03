@@ -1,63 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Page from "../components/Page";
+import Repository from "../components/Repository";
 import { getVideo } from "../api/video";
-import VideoCard from "../components/VideoCard";
-import { Item } from "../api/types";
-import VideoCardGroup from "../components/VideoCardGroup";
-import Pagination from "../components/Pagination";
-import styles from "./Browse.module.scss";
-import { times, when } from "ramda";
+import { useVideoDispatch, useVideoState } from "../storages/video";
 
-function Section() {
-  const rowsPerPage = 12;
-  const [videos, setVideos] = useState([] as Item[]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
+export default function Browse() {
+  const dispatch = useVideoDispatch();
+  const videos = useVideoState();
 
   useEffect(() => {
     async function init(pageToken?: string) {
       const data = await getVideo({
         part: ["snippet", "contentDetails"],
         chart: "mostPopular",
-        maxResults: rowsPerPage,
+        maxResults: 12,
         pageToken,
       });
 
-      setTotal(data.pageInfo.totalResults);
-      setVideos((videos) => [...videos, ...data.items]);
+      dispatch({ type: "add", videos: data.items });
 
       data.nextPageToken && init(data.nextPageToken);
     }
 
     init();
-  }, [rowsPerPage]);
+  }, [dispatch]);
 
-  return (
-    <section className={styles.section}>
-      <VideoCardGroup>
-        {times(
-          (id: number) =>
-            when(Boolean, (data: Item) => (
-              <VideoCard key={String(id)} data={data} />
-            ))(videos[(page - 1) * rowsPerPage + id]),
-          rowsPerPage
-        )}
-      </VideoCardGroup>
-      <Pagination
-        className={styles.pagination}
-        count={total}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onClick={(page) => setPage(page)}
-      />
-    </section>
-  );
-}
-
-export default function Browse() {
   return (
     <Page>
-      <Section />
+      <Repository videos={Object.values(videos)} />
     </Page>
   );
 }
