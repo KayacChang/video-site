@@ -1,0 +1,16 @@
+@import "./theme.scss";
+
+body,
+a {
+  @include dark(primary);
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  color: white;
+  background: transparent;
+}

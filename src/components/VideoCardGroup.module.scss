@@ -1,0 +1,9 @@
+@import "styles/mixin.scss";
+
+$itemPerRow: 4;
+
+.group {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat($itemPerRow, 1fr);
+}

@@ -1,0 +1,11 @@
+@import "styles/mixin.scss";
+
+.card {
+  width: min-content;
+
+  margin: 0 auto;
+
+  h5 {
+    margin: 1em 0;
+  }
+}
