@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { CSSProperties } from "react";
 import styles from "./Pagination.module.scss";
 import { inRange } from "../functions";
 
@@ -32,68 +32,60 @@ function Tab({
 }
 
 type Props = {
-  defaultPage?: number;
+  page?: number;
   count?: number;
   rowsPerPage?: number;
-  onChange?: (page: number) => void;
+  onClick?: (page: number) => void;
+  style?: CSSProperties;
 };
 export default function Pagination({
-  defaultPage = 1,
+  page = 1,
   count = 1,
   rowsPerPage = 1,
-  onChange = () => {},
+  onClick = () => {},
+  style,
 }: Props) {
   const min = 1;
   const max = Math.ceil(count / rowsPerPage);
-
-  const [page, setPage] = useState(defaultPage);
-
-  const onTabClick = useCallback(
-    (page: number) => {
-      setPage(page);
-      onChange(page);
-    },
-    [setPage, onChange]
-  );
 
   if (!inRange(min, max, page)) {
     return <></>;
   }
 
   return (
-    <div className={styles.pagination}>
+    <div className={styles.pagination} style={style}>
       <Tab
         text={String("<<")}
         visibility={page > min}
-        onClick={() => onTabClick(1)}
+        onClick={() => onClick(1)}
       />
       <Tab
         text={"<"}
         visibility={page > min}
-        onClick={() => onTabClick(page - 1)}
+        onClick={() => onClick(page - 1)}
       />
 
       <Tab
         text={String(page - 1)}
         visibility={page > min}
-        onClick={() => onTabClick(page - 1)}
+        onClick={() => onClick(page - 1)}
       />
       <Tab text={String(page)} clickable={false} active={true} />
       <Tab
         text={String(page + 1)}
         visibility={page < max}
-        onClick={() => onTabClick(page + 1)}
+        onClick={() => onClick(page + 1)}
       />
 
       <Tab
         text={">"}
         visibility={page < max}
-        onClick={() => onTabClick(page + 1)}
+        onClick={() => onClick(page + 1)}
       />
       <Tab
         text={String(">>")}
         visibility={page < max}
-        onClick={() => onTabClick(max)}
+        onClick={() => onClick(max)}
       />
     </div>
   );

@@ -6,41 +6,51 @@ import { Item } from "../api/types";
 import VideoCardGroup from "../components/VideoCardGroup";
 import Pagination from "../components/Pagination";
 
-type Props = {
-  title: string;
-};
-
-function Section({ title }: Props) {
+function Section() {
   const rowsPerPage = 12;
   const [videos, setVideos] = useState([] as Item[]);
   const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    async function run() {
+    async function init(pageToken?: string) {
       const data = await getVideo({
-        part: ["snippet", "contentDetails", "statistics"],
+        part: ["snippet", "contentDetails"],
         chart: "mostPopular",
         maxResults: rowsPerPage,
+        pageToken,
       });
 
-      console.log(data);
-
       setTotal(data.pageInfo.totalResults);
-      setVideos((list) => [...list, ...data.items]);
+      setVideos((videos) => [...videos, ...data.items]);
+
+      if (data.nextPageToken) init(data.nextPageToken);
     }
 
-    run();
+    init();
   }, [rowsPerPage]);
+
+  const idx = page - 1;
+  const current = videos.slice(idx * rowsPerPage, (idx + 1) * rowsPerPage);
 
   return (
     <section>
-      <h3>{title}</h3>
       <VideoCardGroup>
-        {videos.map((video) => (
+        {current.map((video) => (
           <VideoCard key={video.id} data={video} />
         ))}
       </VideoCardGroup>
-      <Pagination count={total} rowsPerPage={rowsPerPage} />
+      <Pagination
+        style={{
+          position: "absolute",
+          bottom: "6vh",
+          left: "50vw",
+        }}
+        count={total}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onClick={(page) => setPage(page)}
+      />
     </section>
   );
 }
@@ -48,7 +58,7 @@ function Section({ title }: Props) {
 export default function Browse() {
   return (
     <Page>
-      <Section title={"Most Popular"} />
+      <Section />
     </Page>
   );
 }

@@ -36,5 +36,7 @@ export interface Video {
   etag: string;
   items: Item[];
   kind: string;
+  nextPageToken?: string;
+  prevPageToken?: string;
   pageInfo: { totalResults: number; resultsPerPage: number };
 }

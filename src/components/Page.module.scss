@@ -2,10 +2,13 @@
 @import "styles/mixin.scss";
 
 .page {
-  @include flex();
+  @include flex(center, flex-start);
 
-  padding: 16px 0;
+  width: 100vw;
+  height: 100vh;
+
   > div {
     margin: 0 6vw;
+    margin-top: 48px;
   }
 }

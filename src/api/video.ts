@@ -16,16 +16,26 @@ type Props = {
   part: string[];
   chart: "mostPopular";
   maxResults: number;
+  pageToken?: string;
 };
 
-export function getVideo({ part, chart, maxResults }: Props): Promise<Video> {
+export function getVideo({
+  part,
+  chart,
+  maxResults,
+  pageToken,
+}: Props): Promise<Video> {
   const append = curry(appendSearchParam);
 
-  const { href } = getHost()
+  const target = getHost()
     .map(append("part", part.join(",")))
     .map(append("chart", chart))
     .map(append("maxResults", String(maxResults)))
-    .map(append("key", process.env.REACT_APP_API_KEY || "")).value;
+    .map(append("key", process.env.REACT_APP_API_KEY || ""));
 
-  return fetch(href).then((resp) => resp.json());
+  if (pageToken) {
+    target.map(append("pageToken", pageToken));
+  }
+
+  return fetch(target.value.href).then((resp) => resp.json());
 }
