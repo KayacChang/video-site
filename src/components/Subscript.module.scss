@@ -1,0 +1,7 @@
+@import "styles/button.scss";
+
+.subscript {
+  @extend .hover;
+  border-radius: 3px;
+  padding: 6px 8px;
+}

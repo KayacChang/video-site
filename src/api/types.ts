@@ -25,11 +25,24 @@ export interface Snippet {
   thumbnails: Thumbnails;
 }
 
+interface ContentDetails {
+  duration: string;
+  dimension: string;
+  definition: string;
+  caption: string;
+  licensedContent: boolean;
+  regionRestriction: {
+    allowed: string[];
+    blocked: string[];
+  };
+}
+
 export interface Item {
   etag: string;
   id: string;
   kind: string;
   snippet: Snippet;
+  contentDetails: ContentDetails;
 }
 
 export interface Video {

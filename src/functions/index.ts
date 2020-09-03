@@ -1,4 +1,7 @@
 import { times, identity, pipe } from "ramda";
+import parseDuration from "./time";
+
+export { parseDuration };
 
 export const range = (func: (idx: number) => any, count: number) =>
   times(pipe(identity, func), count);

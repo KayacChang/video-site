@@ -6,7 +6,7 @@ type Action =
   | { type: "add"; videoID: string }
   | { type: "remove"; videoID: string };
 
-function libraryReducer(state: State, action: Action) {
+function SubscriptReducer(state: State, action: Action) {
   if (action.type === "add") {
     return [...state, action.videoID];
   }
@@ -19,7 +19,7 @@ function libraryReducer(state: State, action: Action) {
 }
 
 export const {
-  Provider: LibraryProvider,
-  useDispatch: useLibraryDispatch,
-  useState: useLibraryState,
-} = Context(libraryReducer);
+  Provider: SubscriptProvider,
+  useDispatch: useSubscriptDispatch,
+  useState: useSubscriptState,
+} = Context(SubscriptReducer);
