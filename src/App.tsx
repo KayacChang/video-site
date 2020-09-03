@@ -43,11 +43,14 @@ function Routes() {
   );
 }
 
-function App() {
+type Props = {
+  subscript: string[];
+};
+function App({ subscript }: Props) {
   return (
     <VideoPlayerProvider>
       <VideoProvider init={{}}>
-        <SubscriptProvider init={[]}>
+        <SubscriptProvider init={subscript}>
           <Router>
             <Routes />
           </Router>

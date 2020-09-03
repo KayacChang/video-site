@@ -1,4 +1,5 @@
 import Context from "./context";
+import Cache from "./cache";
 
 type State = string[];
 
@@ -6,16 +7,30 @@ type Action =
   | { type: "add"; videoID: string }
   | { type: "remove"; videoID: string };
 
+const cache = Cache<State>("Subscript", []);
+
 function SubscriptReducer(state: State, action: Action) {
   if (action.type === "add") {
-    return [...state, action.videoID];
+    state = [...state, action.videoID];
+
+    cache.set(state);
+
+    return state;
   }
 
   if (action.type === "remove") {
-    return state.filter((id) => id !== action.videoID);
+    state = state.filter((id) => id !== action.videoID);
+
+    cache.set(state);
+
+    return state;
   }
 
   return state;
+}
+
+export function getSubscriptCache() {
+  return cache.get();
 }
 
 export const {
