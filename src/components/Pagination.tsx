@@ -1,6 +1,7 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import styles from "./Pagination.module.scss";
 import { inRange } from "../functions";
+import clsx from "clsx";
 
 type TabProps = {
   text: string;
@@ -36,14 +37,14 @@ type Props = {
   count?: number;
   rowsPerPage?: number;
   onClick?: (page: number) => void;
-  style?: CSSProperties;
+  className?: string;
 };
 export default function Pagination({
   page = 1,
   count = 1,
   rowsPerPage = 1,
   onClick = () => {},
-  style,
+  className,
 }: Props) {
   const min = 1;
   const max = Math.ceil(count / rowsPerPage);
@@ -53,7 +54,7 @@ export default function Pagination({
   }
 
   return (
-    <div className={styles.pagination} style={style}>
+    <div className={clsx(styles.pagination, className)}>
       <Tab
         text={String("<<")}
         visibility={page > min}

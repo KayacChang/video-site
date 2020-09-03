@@ -5,6 +5,8 @@ import VideoCard from "../components/VideoCard";
 import { Item } from "../api/types";
 import VideoCardGroup from "../components/VideoCardGroup";
 import Pagination from "../components/Pagination";
+import styles from "./Browse.module.scss";
+import { times } from "ramda";
 
 function Section() {
   const rowsPerPage = 12;
@@ -30,22 +32,22 @@ function Section() {
     init();
   }, [rowsPerPage]);
 
-  const idx = page - 1;
-  const current = videos.slice(idx * rowsPerPage, (idx + 1) * rowsPerPage);
-
   return (
-    <section>
+    <section className={styles.section}>
       <VideoCardGroup>
-        {current.map((video) => (
-          <VideoCard key={video.id} data={video} />
-        ))}
+        {times(
+          (id: number) =>
+            videos[(page - 1) * rowsPerPage + id] && (
+              <VideoCard
+                key={String(id)}
+                data={videos[(page - 1) * rowsPerPage + id]}
+              />
+            ),
+          12
+        )}
       </VideoCardGroup>
       <Pagination
-        style={{
-          position: "absolute",
-          bottom: "6vh",
-          left: "50vw",
-        }}
+        className={styles.pagination}
         count={total}
         rowsPerPage={rowsPerPage}
         page={page}
