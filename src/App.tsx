@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import NavBar from "./components/NavBar";
 import Browse from "./pages/Browse";
 import MyList from "./pages/MyList";
+import { VideoPlayerProvider } from "./pages/VideoPlayer";
 
 function Routes() {
   const { pathname } = useLocation();
@@ -44,13 +45,15 @@ function Routes() {
 
 function App() {
   return (
-    <VideoProvider init={{}}>
-      <SubscriptProvider init={[]}>
-        <Router>
-          <Routes />
-        </Router>
-      </SubscriptProvider>
-    </VideoProvider>
+    <VideoPlayerProvider>
+      <VideoProvider init={{}}>
+        <SubscriptProvider init={[]}>
+          <Router>
+            <Routes />
+          </Router>
+        </SubscriptProvider>
+      </VideoProvider>
+    </VideoPlayerProvider>
   );
 }
 

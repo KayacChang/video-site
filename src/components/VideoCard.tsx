@@ -5,6 +5,7 @@ import Subscript from "./Subscript";
 import { useSubscriptState } from "../storages/subscript";
 import { parseDuration } from "../functions";
 import Duration from "./Duration";
+import { useVideoPlayerDispatch } from "../pages/VideoPlayer";
 
 type Props = {
   data: Item;
@@ -16,9 +17,18 @@ export default function VideoCard({ data }: Props) {
   const time = parseDuration(data.contentDetails.duration);
 
   const subscript = useSubscriptState();
+  const dispatch = useVideoPlayerDispatch();
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() =>
+        dispatch({
+          type: "open",
+          url: `https://www.youtube.com/watch?v=${data.id}`,
+        })
+      }
+    >
       <div style={{ position: "relative" }}>
         <Subscript
           videoID={data.id}
