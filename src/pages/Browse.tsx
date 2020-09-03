@@ -6,7 +6,7 @@ import { Item } from "../api/types";
 import VideoCardGroup from "../components/VideoCardGroup";
 import Pagination from "../components/Pagination";
 import styles from "./Browse.module.scss";
-import { times } from "ramda";
+import { times, when } from "ramda";
 
 function Section() {
   const rowsPerPage = 12;
@@ -26,7 +26,7 @@ function Section() {
       setTotal(data.pageInfo.totalResults);
       setVideos((videos) => [...videos, ...data.items]);
 
-      if (data.nextPageToken) init(data.nextPageToken);
+      data.nextPageToken && init(data.nextPageToken);
     }
 
     init();
@@ -37,13 +37,10 @@ function Section() {
       <VideoCardGroup>
         {times(
           (id: number) =>
-            videos[(page - 1) * rowsPerPage + id] && (
-              <VideoCard
-                key={String(id)}
-                data={videos[(page - 1) * rowsPerPage + id]}
-              />
-            ),
-          12
+            when(Boolean, (data: Item) => (
+              <VideoCard key={String(id)} data={data} />
+            ))(videos[(page - 1) * rowsPerPage + id]),
+          rowsPerPage
         )}
       </VideoCardGroup>
       <Pagination
