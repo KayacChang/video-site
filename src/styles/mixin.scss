@@ -4,28 +4,48 @@
   align-items: $align-items;
 }
 
-@mixin phone($orientation: portrait) {
-  // @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
-  //   @if $orientation == portrait {
-  //     @media (orientation: portrait) {
-  //       @content;
-  //     }
-  //   }
-  //   @if $orientation == landscape {
-  //     @media (orientation: landscape) {
-  //       @content;
-  //     }
-  //   }
-  // }
-  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-    @if $orientation == portrait {
-      @media (orientation: portrait) {
-        @content;
+@mixin phone($orientation: portrait, $size: l) {
+  @if $size == s {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+      @if $orientation == portrait {
+        @media (orientation: portrait) {
+          @content;
+        }
+      }
+      @if $orientation == landscape {
+        @media (orientation: landscape) {
+          @content;
+        }
       }
     }
-    @if $orientation == landscape {
-      @media (orientation: landscape) {
-        @content;
+  }
+
+  @if $size == m {
+    @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+      @if $orientation == portrait {
+        @media (orientation: portrait) {
+          @content;
+        }
+      }
+      @if $orientation == landscape {
+        @media (orientation: landscape) {
+          @content;
+        }
+      }
+    }
+  }
+
+  @if $size == l {
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+      @if $orientation == portrait {
+        @media (orientation: portrait) {
+          @content;
+        }
+      }
+      @if $orientation == landscape {
+        @media (orientation: landscape) {
+          @content;
+        }
       }
     }
   }

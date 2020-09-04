@@ -1,16 +1,21 @@
 @import "styles/mixin.scss";
 @import "styles/line-clamp.scss";
 
+.mobile {
+  $width: 80vw;
+  @include phone(portrait, l) {
+    img {
+      width: $width;
+    }
+  }
+}
+
 .card {
   width: min-content;
 
   cursor: pointer;
 
-  @include phone {
-    img {
-      width: 80vw;
-    }
-  }
+  @extend .mobile;
 
   h5 {
     margin: 0.8em 0;

@@ -3,8 +3,11 @@
 .repository {
   margin: 0 48px;
 
-  > * {
-    // margin: 16px 0;
+  @include phone(portrait, s) {
+    margin: auto;
+  }
+  @include phone(landscape, s) {
+    margin: auto;
   }
 }
 

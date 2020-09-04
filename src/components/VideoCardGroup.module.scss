@@ -1,7 +1,13 @@
 @import "styles/mixin.scss";
 
 @mixin columns($itemPerRow) {
-  grid-template-columns: repeat($itemPerRow, 1fr);
+  @if $itemPerRow == 1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } @else {
+    grid-template-columns: repeat($itemPerRow, 1fr);
+  }
 }
 
 .group {
@@ -16,9 +22,14 @@
     @include columns(3);
   }
 
-  @include phone(portrait) {
-    display: flex;
-    flex-direction: column;
+  @include phone(portrait, s) {
+    @include columns(1);
+  }
+  @include phone(portrait, m) {
+    @include columns(1);
+  }
+  @include phone(portrait, l) {
+    @include columns(1);
   }
   @include phone(landscape) {
     @include columns(2);

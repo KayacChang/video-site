@@ -17,7 +17,11 @@
 .icon {
   background: transparent;
   margin: 16px 32px;
-  height: 2rem;
+  height: 36px;
+
+  @include phone(portrait, s) {
+    height: 24px;
+  }
 
   img {
     max-width: 100%;

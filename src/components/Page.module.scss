@@ -10,7 +10,16 @@
   > div {
     margin-top: 4%;
 
-    @include phone {
+    @include phone(portrait, l) {
+      margin-top: 16%;
+    }
+    @include phone(portrait, m) {
+      margin-top: 16%;
+    }
+    @include phone(portrait, s) {
+      margin-top: 16%;
+    }
+    @include phone(landscape) {
       margin-top: 16%;
     }
   }
