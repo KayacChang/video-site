@@ -6,6 +6,7 @@
 
   position: fixed;
   top: 0;
+  z-index: 2;
 
   width: 100vw;
   height: 100vh;
@@ -20,6 +21,6 @@
 .close {
   padding: 2px 24px;
   position: absolute;
-  top: 4vh;
+  top: 2vh;
   left: 3vw;
 }

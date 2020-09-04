@@ -17,5 +17,10 @@ button {
 }
 
 * {
+  overscroll-behavior-y: none;
   font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+p {
+  font-family: sans-serif;
 }
