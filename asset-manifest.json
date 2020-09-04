@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/video-site/static/css/main.fff1c7ad.chunk.css",
-    "main.js": "/video-site/static/js/main.5899ed12.chunk.js",
-    "main.js.map": "/video-site/static/js/main.5899ed12.chunk.js.map",
+    "main.css": "/video-site/static/css/main.fd8e231b.chunk.css",
+    "main.js": "/video-site/static/js/main.de130736.chunk.js",
+    "main.js.map": "/video-site/static/js/main.de130736.chunk.js.map",
     "runtime-main.js": "/video-site/static/js/runtime-main.fbb5fe0b.js",
     "runtime-main.js.map": "/video-site/static/js/runtime-main.fbb5fe0b.js.map",
     "static/js/2.02f32811.chunk.js": "/video-site/static/js/2.02f32811.chunk.js",
     "static/js/2.02f32811.chunk.js.map": "/video-site/static/js/2.02f32811.chunk.js.map",
     "index.html": "/video-site/index.html",
-    "precache-manifest.5fe4627dbfbcd9675a640e61813e87ef.js": "/video-site/precache-manifest.5fe4627dbfbcd9675a640e61813e87ef.js",
+    "precache-manifest.dd870c0b7ded37d2503654adb95b0240.js": "/video-site/precache-manifest.dd870c0b7ded37d2503654adb95b0240.js",
     "service-worker.js": "/video-site/service-worker.js",
-    "static/css/main.fff1c7ad.chunk.css.map": "/video-site/static/css/main.fff1c7ad.chunk.css.map",
+    "static/css/main.fd8e231b.chunk.css.map": "/video-site/static/css/main.fd8e231b.chunk.css.map",
     "static/js/2.02f32811.chunk.js.LICENSE.txt": "/video-site/static/js/2.02f32811.chunk.js.LICENSE.txt",
     "static/media/NetflixSans_W_Rg.woff2": "/video-site/static/media/NetflixSans_W_Rg.0bf3177f.woff2",
     "static/media/netflix-logo.png": "/video-site/static/media/netflix-logo.8f1c7fff.png"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.fbb5fe0b.js",
     "static/js/2.02f32811.chunk.js",
-    "static/css/main.fff1c7ad.chunk.css",
-    "static/js/main.5899ed12.chunk.js"
+    "static/css/main.fd8e231b.chunk.css",
+    "static/js/main.de130736.chunk.js"
   ]
 }
